@@ -50,10 +50,10 @@ void RenderWindow::render(Entity& p_entity)
     src.h = p_entity.getCurrentFrame().h;
 
     SDL_Rect dest;
-    dest.x = p_entity.getX();
-    dest.y = p_entity.getY();
-    dest.w = p_entity.getCurrentFrame().w * 4;
-    dest.h = p_entity.getCurrentFrame().h * 4;
+    dest.x = p_entity.getX() * p_entity.getScale();
+    dest.y = p_entity.getY() * p_entity.getScale();
+    dest.w = p_entity.getCurrentFrame().w * p_entity.getScale();
+    dest.h = p_entity.getCurrentFrame().h * p_entity.getScale();
 
     SDL_RenderCopy(renderer, p_entity.getTex(), &src, &dest);
 }
