@@ -31,14 +31,13 @@ int main(int argc, char* args[])
 
     for (int x = 0; x < 12; x++){
         for (int y = 0; y < 5; y++){
-            Entity alien(Vector2f(1*16*x, 1*16*y), 4, alien1Texture);
+            Entity alien(Vector2f(1*16*x, 1*16*y), 0.4f, 4, alien1Texture);
             entities.push_back(alien);
         }
     }
 
-    Entity players[1] = {
-                        Entity(Vector2f(window_width / 4 * 0.5 - 8, window_height / 4 - 18), 4, playerTexture),
-                        };
+    Entity player(Vector2f(window_width / 4 * 0.5 - 8, window_height / 4 - 18), 1.0f, 4, playerTexture);
+    entities.push_back(player);
     
     bool gameRunning = true;
     SDL_Event event;
@@ -76,16 +75,14 @@ int main(int argc, char* args[])
         // Clear window pixels
         window.clear();
 
-        // Render Players
-        for (int i = 0; i < 1; i++)
-        {
-            window.render(players[i]);
-        }
-
-        // Render Aliens
+        // Render Entities
         for (Entity& ob : entities)
         {
             window.render(ob);
+        }
+
+        for (Entity& ob : entities){
+            ob.update();
         }
 
         // Render Window

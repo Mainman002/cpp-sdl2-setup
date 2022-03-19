@@ -3,8 +3,8 @@
 #include <SDL_image.h>
 #include <iostream>
 
-Entity::Entity(Vector2f p_pos, float p_s, SDL_Texture* p_tex)
-:pos(p_pos), scale(p_s), tex(p_tex)
+Entity::Entity(Vector2f p_pos, float p_speed, float p_scale, SDL_Texture* p_tex)
+:pos(p_pos), scale(p_scale), speed(p_speed), tex(p_tex)
 {
     currentFrame.x = 0;
     currentFrame.y = 0;
@@ -25,4 +25,16 @@ SDL_Rect Entity::getCurrentFrame()
 float Entity::getScale()
 {
     return scale;
+}
+
+float Entity::update()
+{
+    pos.x = pos.x + speed;
+
+    if (pos.x > 1920 * 0.5 / 4)
+    {
+        pos.x = 0 - 16;
+    }
+
+    return pos.x;
 }
