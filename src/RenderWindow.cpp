@@ -15,7 +15,7 @@ RenderWindow::RenderWindow(const char* p_title, int p_w, int p_h)
         std::cout << "Window failed to init" << SDL_GetError() << std::endl;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
@@ -29,6 +29,17 @@ SDL_Texture* RenderWindow::loadTexture(const char* p_filePath)
     }
 
     return texture;
+}
+
+int RenderWindow::getRefreshRate()
+{
+    int displayIndex = SDL_GetWindowDisplayIndex( window );
+
+    SDL_DisplayMode mode;
+
+    SDL_GetDisplayMode(displayIndex, 0, &mode);
+
+    return mode.refresh_rate;
 }
 
 void RenderWindow::cleanUp()
@@ -50,8 +61,8 @@ void RenderWindow::render(Entity& p_entity)
     src.h = p_entity.getCurrentFrame().h;
 
     SDL_Rect dest;
-    dest.x = p_entity.getX() * p_entity.getScale();
-    dest.y = p_entity.getY() * p_entity.getScale();
+    dest.x = p_entity.getPos().x * p_entity.getScale();
+    dest.y = p_entity.getPos().y * p_entity.getScale();
     dest.w = p_entity.getCurrentFrame().w * p_entity.getScale();
     dest.h = p_entity.getCurrentFrame().h * p_entity.getScale();
 
