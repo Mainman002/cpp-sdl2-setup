@@ -16,3 +16,5 @@ Then to run the app either navigate to bin/release/ or enter
 ```Bash
 make run-release
 ```
+
+![image](https://user-images.githubusercontent.com/11281480/159133526-3190b16d-4531-42f6-be4a-efb69deda42f.png)
