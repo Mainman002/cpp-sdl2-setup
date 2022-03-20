@@ -7,7 +7,10 @@ For Arch based distros you'll need this before compiling
 ```Bash
 sudo pacman -S mingw-w64-gcc
 ```
-
+For Raspbian 32bit you'll need this before compiling
+```Bash
+sudo apt install build-essential libsdl2-dev libsdl2-image-dev
+```
 To compile open a terminal and enter
 ```Bash
 make release -j4
