@@ -5,7 +5,7 @@ Make sure you have g++ and MinGW installed for compiling
 
 For Arch based distros you'll need this before compiling
 ```Bash
-sudo pacman -S mingw-w64-gcc
+sudo pacman -S mingw-w64-gcc sdl2 sdl2_image
 ```
 For Raspbian 32bit you'll need this before compiling
 ```Bash
