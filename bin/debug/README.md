@@ -1,0 +1,1 @@
+## for linux copy lib files to system directory /lib/
